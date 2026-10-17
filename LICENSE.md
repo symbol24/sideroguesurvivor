@@ -1,2 +1,2 @@
 
-Copyright (C) 2026 Symbol24
+Copyright (C) 2026 Robot in Disguise
