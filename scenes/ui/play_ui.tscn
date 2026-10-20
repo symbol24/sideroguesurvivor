@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://cesc78rlcx0sl"]
 
 [ext_resource type="Script" uid="uid://cpf1i70jir12n" path="res://code/ui/play_ui.gd" id="1_4btmp"]
+[ext_resource type="PackedScene" uid="uid://c2nsju14umt1m" path="res://scenes/ui/bulleticon.tscn" id="2_bf28e"]
 
-[node name="PlayUi" type="Control" unique_id=1449471144]
+[node name="PlayUi" type="Control" unique_id=1449471144 node_paths=PackedStringArray("bullet_icons")]
 custom_minimum_size = Vector2(576, 324)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4btmp")
+bullet_icons = [NodePath("bulleticon")]
 _id = &"play_ui"
 metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
 
@@ -16,9 +18,16 @@ visible = false
 custom_minimum_size = Vector2(40, 5)
 layout_mode = 0
 offset_left = 268.0
-offset_top = 172.0
+offset_top = 179.0
 offset_right = 308.0
-offset_bottom = 177.0
+offset_bottom = 184.0
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="bulleticon" parent="." unique_id=1245500148 instance=ExtResource("2_bf28e")]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 167.0
+offset_right = 292.0
+offset_bottom = 175.0
