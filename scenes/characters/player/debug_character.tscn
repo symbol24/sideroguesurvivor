@@ -24,14 +24,18 @@ debug_data = SubResource("Resource_sqeqr")
 attack_detector = NodePath("attack_detector")
 
 [node name="image" type="TileMapLayer" parent="." unique_id=1787454930]
+unique_name_in_owner = true
+position = Vector2(-8, 0)
 tile_map_data = PackedByteArray("AAD///z/AAAAABkAAAD///3/AAAAABoAAAD///7/AAAAABsAAAD/////AAAAABwAAAAAAPz/AAABABkAAAAAAP3/AAABABoAAAAAAP7/AAABABsAAAAAAP//AAABABwAAAABAPz/AAACABkAAAABAP3/AAACABoAAAABAP7/AAACABsAAAABAP//AAACABwAAAA=")
 tile_set = ExtResource("1_m2gs7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=134388491]
-position = Vector2(8, -26)
+position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_x3syn")
 
 [node name="gun" type="TileMapLayer" parent="." unique_id=581566485]
+unique_name_in_owner = true
+position = Vector2(-8, 0)
 tile_map_data = PackedByteArray("AAAAAP7/AAAKAA0AAAABAP7/AAALAA0AAAA=")
 tile_set = ExtResource("1_m2gs7")
 
@@ -39,6 +43,7 @@ tile_set = ExtResource("1_m2gs7")
 position = Vector2(16, -27)
 
 [node name="hurt_collider" type="Area2D" parent="." unique_id=407295084]
+position = Vector2(-8, 0)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("4_xefur")
