@@ -84,6 +84,7 @@ func _trigger_direction() -> void:
 		_can_shoot = false
 		_attack_timer = _data.weapon_delay if _data != null else DEBUG_WEAPON_DELAY
 		_current_bullet_count -= 1
+		Signals.shots_fired.emit(_current_bullet_count)
 	print("bullet count: ", _current_bullet_count)
 	_reset_inputs()
 
