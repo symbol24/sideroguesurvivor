@@ -2,6 +2,7 @@ class_name Character extends CharacterBody2D
 
 
 var _data:CharacterData
+var _is_active := false
 var _is_facing_left := false
 var _invulnerable := false
 var _invulnerable_time:float:
@@ -17,7 +18,9 @@ var damage:int:
 func setup_character(new_data:CharacterData) -> void:
 	_data = new_data.duplicate(true)
 	_data.setup_data()
+	if not is_node_ready(): await ready
 	name = _data.id
+	_is_active = true
 
 
 func apply_damage(value:int = 0) -> void:
@@ -27,7 +30,6 @@ func apply_damage(value:int = 0) -> void:
 		if _data.current_hp <= 0:
 			_data.update_lives()
 			if _data.current_lives <= 0:
-				print("DEAD")
 				_death()
 
 	

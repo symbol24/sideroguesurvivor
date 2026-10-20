@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_sqeqr"]
 script = ExtResource("2_a61xv")
+id = &"debug_character"
 metadata/_custom_type_script = "uid://drgj586ets6"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3syn"]

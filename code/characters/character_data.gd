@@ -6,12 +6,14 @@ class_name CharacterData extends Resource
 @export var _starting_hp := 1
 @export var _starting_lives := 1
 
+var current_level := 1
 var current_lives := 1
 var current_hp := 1
 
 
 func setup_data() -> void:
-	pass
+	current_lives = _starting_lives
+	current_hp = _starting_hp
 
 
 func update_hp(value :=  0) -> void:

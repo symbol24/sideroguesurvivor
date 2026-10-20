@@ -8,7 +8,6 @@ const MOVE_SPEED := 50.0
 
 
 var _target:PlayerCharacter
-var _is_active := false
 var _direction := 1.0
 var move_speed:float:
 	get:
@@ -23,7 +22,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if _is_active:
 		velocity = _move(velocity, delta)
-		
 		move_and_slide()
 
 
