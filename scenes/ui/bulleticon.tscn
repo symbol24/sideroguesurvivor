@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c2nsju14umt1m"]
+
+[ext_resource type="Script" uid="uid://bx7u47ylqrt21" path="res://code/ui/bulleticon.gd" id="1_fpfgg"]
+[ext_resource type="Texture2D" uid="uid://bcm8ya68hc6bo" path="res://textures/debug/8x8_timer_outline.png" id="2_s4amm"]
+[ext_resource type="Texture2D" uid="uid://b4omc52my6nst" path="res://textures/debug/8x8_timer_inner.png" id="3_43gl7"]
+
+[node name="bulleticon" type="Control" unique_id=1245500148]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_fpfgg")
+
+[node name="outline" type="TextureRect" parent="." unique_id=74269450]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_s4amm")
+
+[node name="inner" type="TextureRect" parent="." unique_id=1505432276]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_43gl7")
