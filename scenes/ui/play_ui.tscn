@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cesc78rlcx0sl"]
+
+[ext_resource type="Script" uid="uid://cpf1i70jir12n" path="res://code/ui/play_ui.gd" id="1_4btmp"]
+
+[node name="PlayUi" type="Control" unique_id=1449471144]
+custom_minimum_size = Vector2(576, 324)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4btmp")
+_id = &"play_ui"
+metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
+
+[node name="reload_delay_bar" type="ProgressBar" parent="." unique_id=1325423549]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 5)
+layout_mode = 0
+offset_left = 268.0
+offset_top = 172.0
+offset_right = 308.0
+offset_bottom = 177.0
+max_value = 1.0
+value = 0.5
+show_percentage = false
