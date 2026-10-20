@@ -21,6 +21,7 @@ func _ready() -> void:
 	var sm:Spawn = Spawn.new()
 	add_child(sm)
 	if not sm.is_node_ready(): await sm.ready
+	Signals.toggle_display.emit(&"play_ui", true)
 	
 
 func _process(delta: float) -> void:
