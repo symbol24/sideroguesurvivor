@@ -10,6 +10,7 @@ var invul_time := 0.0
 var weapon_delay := 1.0
 var weapon_reload_delay := 2.0
 var bullet_count := 1.0
+var damage := 1
 
 
 func setup_data() -> void:

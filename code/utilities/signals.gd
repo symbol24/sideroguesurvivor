@@ -13,3 +13,4 @@ signal toggle_display(id:StringName, display:bool)
 # PLAYER
 signal start_reload_timer(time:float)
 signal reload_timer_complete
+signal shots_fired(remaining:int)
