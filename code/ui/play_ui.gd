@@ -6,12 +6,14 @@ class_name PlayUi extends RidControl
 var _timer_active := false
 
 @onready var reload_delay_bar:ProgressBar = %reload_delay_bar
+@onready var resource_1:Label = %resource_1
 
 
 func _ready() -> void:
 	super()
 	Signals.start_reload_timer.connect(_start_reload_timer)
 	Signals.shots_fired.connect(_shots_fired)
+	Signals.resource_1_updated.connect(_update_resource_1)
 
 
 func _process(delta: float) -> void:
@@ -41,3 +43,7 @@ func _shots_fired(remaining:int) -> void:
 func _reset_ammo() -> void:
 	for icon in bullet_icons:
 		icon.toggle(true)
+
+
+func _update_resource_1(value:int) -> void:
+	resource_1.text = str(value)
