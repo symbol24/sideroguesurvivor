@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dufos5kyb0hl8"]
+
+[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="1_aqevi"]
+[ext_resource type="Script" uid="uid://dw5o2poyvnbgy" path="res://code/utilities/coin.gd" id="1_jcvse"]
+
+[node name="Coin" type="Node2D" unique_id=1893483842]
+script = ExtResource("1_jcvse")
+
+[node name="coin_image" type="TileMapLayer" parent="." unique_id=579626203]
+position = Vector2(-8, 8)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 13, 0, 13, 0, 0, 0)
+tile_set = ExtResource("1_aqevi")
