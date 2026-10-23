@@ -48,6 +48,7 @@ func damage_death() -> void:
 func _death() -> void:
 	_is_active = false
 	Signals.remove_one.emit(self)
+	Signals.spawn_a_gribly.emit(Griblies.Type.COIN, Vector2(global_position.x, global_position.y-48), _data.resource_1_value)
 	var tween:Tween = create_tween()
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.2)
 	await tween.finished
