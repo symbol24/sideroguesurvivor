@@ -21,8 +21,12 @@ func _ready() -> void:
 	var sm:Spawn = Spawn.new()
 	add_child(sm)
 	if not sm.is_node_ready(): await sm.ready
+	var griblies := Griblies.new()
+	add_child(griblies)
+	if not griblies.is_node_ready(): await griblies.ready
 	Signals.toggle_display.emit(&"play_ui", true)
 	
 
 func _process(delta: float) -> void:
 	_debug_timer -= delta
+	
