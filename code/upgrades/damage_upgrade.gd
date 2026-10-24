@@ -1,0 +1,1 @@
+class_name DamageUpgrade extends Upgrade

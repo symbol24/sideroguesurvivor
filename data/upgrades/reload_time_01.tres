@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UpgradeGroup" format=3 uid="uid://ijh2n2vdv4nn"]
+
+[ext_resource type="Script" uid="uid://bc0wrsrgqn77l" path="res://code/upgrades/upgrade.gd" id="1_u1cuy"]
+[ext_resource type="Script" uid="uid://bp5gir3raop0v" path="res://code/upgrades/upgrade_group.gd" id="2_ktvs4"]
+
+[sub_resource type="Resource" id="Resource_6bsfc"]
+script = ExtResource("1_u1cuy")
+id = &"reload_time_01_01"
+value = -0.5
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_u1cuy"]
+script = ExtResource("1_u1cuy")
+id = &"reload_time_01_02"
+value = -0.5
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[resource]
+script = ExtResource("2_ktvs4")
+id = &"reload_time_01"
+type = 2
+group = Array[ExtResource("1_u1cuy")]([SubResource("Resource_6bsfc"), SubResource("Resource_u1cuy")])
+metadata/_custom_type_script = "uid://bp5gir3raop0v"
