@@ -49,9 +49,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	super()
 	add_to_group(&"player")
 	Signals.reload_timer_complete.connect(_reload_time_complete)
-	if debug_data != null: setup_character(debug_data)
+	Signals.update_resource_1.connect(_update_resource_1)
 
 
 func _process(delta: float) -> void:
@@ -68,7 +69,6 @@ func setup_character(new_data:CharacterData) -> void:
 	name = _data.id
 	_max_bullet_amount = _data.bullet_count
 	_current_bullet_count = _max_bullet_amount
-	_is_active = true
 
 
 func _trigger_direction() -> void:
@@ -85,12 +85,10 @@ func _trigger_direction() -> void:
 		_attack_timer = _data.weapon_delay if _data != null else DEBUG_WEAPON_DELAY
 		_current_bullet_count -= 1
 		Signals.shots_fired.emit(_current_bullet_count)
-	print("bullet count: ", _current_bullet_count)
 	_reset_inputs()
 
 
 func _trigger_double() -> void:
-	print("Triggering both")
 	_input_timer = INPUT_DELAY
 	Signals.start_reload_timer.emit(_data.weapon_reload_delay)
 	get_tree().create_timer(DELAY_CHECK_TIMER).timeout.connect(_reset_inputs)
@@ -102,7 +100,6 @@ func _reload_time_complete() -> void:
 
 func _button_check() -> void:
 	if _check_timer > 0.0:
-		print("_left_pressed: " , _left_pressed, " _right_pressed: ", _right_pressed)
 		if _left_pressed and _right_pressed:
 			_trigger_double()
 	else:
@@ -119,3 +116,8 @@ func _get_target() -> Enemy:
 	attack_detector.force_raycast_update()
 	enemy = attack_detector.get_collider()
 	return enemy
+
+
+func _update_resource_1(value:int) -> void:
+	_data.currency1 += value
+	Signals.resource_1_updated.emit(_data.currency1)

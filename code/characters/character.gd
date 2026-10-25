@@ -15,12 +15,15 @@ var damage:int:
 		return _data.damage
 
 
+func _ready() -> void:
+	Signals.toggle_active.connect(toggle_active)
+
+
 func setup_character(new_data:CharacterData) -> void:
 	_data = new_data.duplicate(true)
 	_data.setup_data()
 	if not is_node_ready(): await ready
 	name = _data.id
-	_is_active = true
 
 
 func apply_damage(value:int = 0) -> void:
@@ -38,6 +41,10 @@ func toggle_invulnerable(value:bool = false) -> void:
 	if value: get_tree().create_timer(_invulnerable_time).timeout.connect(toggle_invulnerable)
 
 
+func toggle_active(value:bool = false) -> void:
+	_is_active = value
+
+
 func _flip(is_left:bool = true) -> void:
 	if is_left:
 		if not _is_facing_left:
@@ -50,4 +57,8 @@ func _flip(is_left:bool = true) -> void:
 
 
 func _death() -> void:
+	queue_free()
+
+
+func _remove_no_effect() -> void:
 	queue_free()

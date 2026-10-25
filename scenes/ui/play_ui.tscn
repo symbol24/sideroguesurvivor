@@ -55,3 +55,20 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "COINS"
+
+[node name="timer_vbox" type="VBoxContainer" parent="." unique_id=238980816]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 23.0
+offset_right = 324.0
+offset_bottom = 73.0
+
+[node name="Label" type="Label" parent="timer_vbox" unique_id=1706207247]
+layout_mode = 2
+text = "SURVIVE!"
+
+[node name="timer_label" type="Label" parent="timer_vbox" unique_id=1830501279]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+horizontal_alignment = 1

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://52nnvny06moc"]
+
+[ext_resource type="Script" uid="uid://jymoeo0at8ol" path="res://code/ui/buy_menu.gd" id="1_pvw85"]
+
+[node name="BuyMenu" type="Control" unique_id=1212878229]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pvw85")
+_id = &"buy_menu"
+metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
+
+[node name="Label" type="Label" parent="." unique_id=309084659]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "BUY MENU"

@@ -7,6 +7,7 @@ var _timer_active := false
 
 @onready var reload_delay_bar:ProgressBar = %reload_delay_bar
 @onready var resource_1:Label = %resource_1
+@onready var timer_label:Label = %timer_label
 
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 	Signals.start_reload_timer.connect(_start_reload_timer)
 	Signals.shots_fired.connect(_shots_fired)
 	Signals.resource_1_updated.connect(_update_resource_1)
+	Signals.round_timer_updated.connect(_update_timer_label)
 
 
 func _process(delta: float) -> void:
@@ -47,3 +49,7 @@ func _reset_ammo() -> void:
 
 func _update_resource_1(value:int) -> void:
 	resource_1.text = str(value)
+
+
+func _update_timer_label(value:int) -> void:
+	timer_label.text = str(value)

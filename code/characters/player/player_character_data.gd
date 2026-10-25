@@ -6,6 +6,12 @@ class_name PlayerCharacterData extends CharacterData
 @export var _debug_bullet_count := 1
 @export var _debug_weapon_reload_delay := 2.0
 
+# Run data
+@export_category(&"Run Data")
+@export var currency1 := 0
+@export var currency2 := 0
+@export var unlocked_upgrades:Dictionary[StringName, Dictionary]
+
 var invul_time := 0.0
 var weapon_delay := 1.0
 var weapon_reload_delay := 2.0

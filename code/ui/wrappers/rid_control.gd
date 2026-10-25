@@ -9,4 +9,5 @@ func _ready() -> void:
 
 
 func toggle_display(display := false) -> void:
+	print("Setting ", _id, " to visible: ", display)
 	set_visible(display)

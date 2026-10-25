@@ -6,8 +6,6 @@ const MOVE_SPEED := 50.0
 
 @export var debug_data:EnemyData
 
-
-var _target:PlayerCharacter
 var _direction := 1.0
 var move_speed:float:
 	get:
@@ -16,6 +14,7 @@ var move_speed:float:
 
 
 func _ready() -> void:
+	super()
 	add_to_group(&"enemy")
 	
 
@@ -29,11 +28,9 @@ func setup_character(new_data:CharacterData) -> void:
 	_data = new_data.duplicate(true)
 	_data.setup_data()
 	name = _data.id
-	_target = get_tree().get_first_node_in_group(&"player")
-	_flip(_target.global_position.x <= global_position.x)
+	_flip(Game.PLAYER_POS.x <= global_position.x)
 	_direction = -1.0 if _is_facing_left else 1.0
 	if debug_data != null: setup_character(debug_data)
-	_is_active = true
 
 
 func damage_death() -> void:
@@ -52,6 +49,12 @@ func _death() -> void:
 	var tween:Tween = create_tween()
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.2)
 	await tween.finished
+	queue_free()
+
+
+func _remove_no_effect() -> void:
+	_is_active = false
+	Signals.remove_one.emit(self)
 	queue_free()
 
 

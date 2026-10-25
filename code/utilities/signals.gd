@@ -3,6 +3,7 @@ extends Node
 
 # Spawn Manager
 signal spawn_one(data:CharacterData, is_left:bool)
+signal spawn_character(player_character_data: PlayerCharacterData, pos:Vector2)
 signal remove_one(enemy:Enemy)
 signal get_closest_to_shoot(player:PlayerCharacter, is_looking_left:bool)
 signal closest_to_shoot(enemy:Enemy)
@@ -19,3 +20,6 @@ signal shots_fired(remaining:int)
 # GAME
 signal update_resource_1(value:int)
 signal spawn_a_gribly(type:Griblies.Type, pos:Vector2, value:int)
+signal toggle_active(value:bool)
+signal start_round()
+signal round_timer_updated(value:int)

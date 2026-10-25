@@ -3,6 +3,7 @@ class_name Ui extends CanvasLayer
 
 const UIS := {
 				&"play_ui":"uid://cesc78rlcx0sl",
+				&"buy_menu":"uid://52nnvny06moc",
 			}
 
 
@@ -22,4 +23,5 @@ func _toggle_display(id:StringName, display:bool) -> void:
 		var new:RidControl = load(UIS[id]).instantiate()
 		add_child(new)
 		if not new.is_node_ready(): await new.ready
+		_displays[id] = new
 		new.toggle_display(display)
