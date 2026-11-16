@@ -2,16 +2,29 @@
 
 [ext_resource type="Script" uid="uid://bc0wrsrgqn77l" path="res://code/upgrades/upgrade.gd" id="1_u1cuy"]
 [ext_resource type="Script" uid="uid://bp5gir3raop0v" path="res://code/upgrades/upgrade_group.gd" id="2_ktvs4"]
+[ext_resource type="Script" uid="uid://b2dqpe6lnr0o4" path="res://code/utilities/currency_cost.gd" id="2_yeuu8"]
+
+[sub_resource type="Resource" id="Resource_upcjb"]
+script = ExtResource("2_yeuu8")
+amount = 1
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
 
 [sub_resource type="Resource" id="Resource_6bsfc"]
 script = ExtResource("1_u1cuy")
 id = &"reload_time_01_01"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_upcjb")])
 value = -0.5
 metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_ktvs4"]
+script = ExtResource("2_yeuu8")
+amount = 2
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
 
 [sub_resource type="Resource" id="Resource_u1cuy"]
 script = ExtResource("1_u1cuy")
 id = &"reload_time_01_02"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_ktvs4")])
 value = -0.5
 metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
 
