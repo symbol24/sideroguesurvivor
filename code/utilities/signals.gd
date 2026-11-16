@@ -28,7 +28,12 @@ signal round_number_updated(value:int)
 
 # UPGRADES
 signal new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type)
-signal attempt_purchase(id:StringName, upgrade:Upgrade)
+signal attempt_purchase(group: UpgradeGroup)
+signal upgrade_purchased(group:UpgradeGroup)
 
 # SAVE / LOAD
 signal create_debug_data
+signal request_save
+signal request_load(id: int)
+signal save_complete
+signal load_complete(data: SaveData)
