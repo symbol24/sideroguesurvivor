@@ -1,13 +1,11 @@
 class_name PlayerCharacter extends Character
 
-
 const DELAY_CHECK_TIMER := 0.05
 const INPUT_DELAY := 0.2
 const DEBUG_WEAPON_DELAY := 1.0
 
-
-@export var debug_data:PlayerCharacterData
-@export var attack_detector:RayCast2D
+@export var debug_data: PlayerCharacterData
+@export var attack_detector: RayCast2D
 
 var _input_timer := 0.0:
 	set(value):
@@ -18,7 +16,7 @@ var _input_timer := 0.0:
 var _check_timer := 0.0:
 	set(value):
 		_check_timer = value
-		if _check_timer <= 0.0: 
+		if _check_timer <= 0.0:
 			_check_timer = 0.0
 			_trigger_direction()
 var _attack_timer := 0.0:
@@ -105,7 +103,7 @@ func _button_check() -> void:
 			_trigger_double()
 	else:
 		_check_timer = DELAY_CHECK_TIMER
-	
+
 
 func _reset_inputs() -> void:
 	_left_pressed = false
@@ -113,15 +111,8 @@ func _reset_inputs() -> void:
 
 
 func _get_target() -> Enemy:
-	var enemy:Enemy
 	attack_detector.force_raycast_update()
-	enemy = attack_detector.get_collider()
-	return enemy
-
-
-func _update_resource_1(value:int) -> void:
-	_data.currency1 += value
-	Signals.resource_1_updated.emit(_data.currency1)
+	return attack_detector.get_collider() as Enemy
 
 
 func _round_end_cleanup() -> void:

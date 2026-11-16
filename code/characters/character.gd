@@ -7,7 +7,7 @@ var _is_facing_left := false
 var _invulnerable := false
 var _invulnerable_time:float:
 	get:
-		if _data != null and _data.get(&"invulnerable_time"): return _data.inveulnerable_time
+		if _data != null and _data.get(&"invulnerable_time"): return _data.invulnerable_time
 		return 1.0
 var damage:int:
 	get:
