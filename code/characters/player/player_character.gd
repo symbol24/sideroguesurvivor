@@ -40,19 +40,17 @@ func _input(event: InputEvent) -> void:
 			_left_pressed = true
 			_button_check()
 			get_viewport().set_input_as_handled()
-			print("left")
 		elif event.is_action_pressed(&"right"):
 			_right_pressed = true
 			_button_check()
 			get_viewport().set_input_as_handled()
-			print("right")
 
 
 func _ready() -> void:
 	super()
 	add_to_group(&"player")
 	Signals.reload_timer_complete.connect(_reload_time_complete)
-	Signals.new_upgrade.connect(_new_upgrade)
+	Signals.upgrade_purchased.connect(_on_upgrade_purchased)
 
 
 func _process(delta: float) -> void:
@@ -62,25 +60,28 @@ func _process(delta: float) -> void:
 		if _attack_timer > 0.0: _attack_timer -= delta
 
 
-func setup_character(new_data:CharacterData) -> void:
-	_data = new_data.duplicate(true)
-	_data.setup_data()
-	if not is_node_ready(): await ready
-	name = _data.id
-	_max_bullet_amount = _data.bullet_count
-	_current_bullet_count = _max_bullet_amount
+func setup_character(new_data: CharacterData) -> void:
+	await super(new_data)
+	if _data is PlayerCharacterData:
+		var um := get_tree().get_first_node_in_group(&"UpgradeManager") as UpgradeManager
+		if um != null:
+			(_data as PlayerCharacterData).recalculate_upgrades(um.upgrade_groups)
+		_max_bullet_amount = _data.bullet_count
+		_current_bullet_count = _max_bullet_amount
 
 
 func _trigger_direction() -> void:
 	if _left_pressed and _right_pressed: return
 	elif not _left_pressed and not _right_pressed: return
-	if _left_pressed: 
+	if _left_pressed:
 		_flip(true)
-	elif _right_pressed: 
+	elif _right_pressed:
 		_flip(false)
 	if _can_shoot and _current_bullet_count > 0:
-		var enemy:Enemy = _get_target()
-		if enemy != null: enemy.apply_damage(-1)
+		var enemy: Enemy = _get_target()
+		if enemy != null:
+			var dmg: int = int((_data as PlayerCharacterData).damage) if _data is PlayerCharacterData else 1
+			enemy.apply_damage(-dmg)
 		_can_shoot = false
 		_attack_timer = _data.weapon_delay if _data != null else DEBUG_WEAPON_DELAY
 		_current_bullet_count -= 1
@@ -131,5 +132,9 @@ func _round_end_cleanup() -> void:
 	_attack_timer = 0.0
 
 
-func _new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type) -> void:
-	_data.add_upgrade(new_upgrade, type)
+func _on_upgrade_purchased(group: UpgradeGroup) -> void:
+	if _data is PlayerCharacterData:
+		var p_data := _data as PlayerCharacterData
+		p_data.apply_upgrade_group(group)
+		_max_bullet_amount = p_data.bullet_count
+		_current_bullet_count = _max_bullet_amount
