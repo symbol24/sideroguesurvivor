@@ -21,8 +21,9 @@ func _ready() -> void:
 
 func toggle_display(display := false) -> void:
 	if display:
-		resource_1.text = str(game.player_data.currency_1)
+		resource_1.text = str(game.save_data.currency_1)
 		_display_upgrades()
+		Signals.attempt_purchase.emit(RELOAD01)
 	set_visible(display)
 
 

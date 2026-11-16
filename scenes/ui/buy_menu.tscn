@@ -5,11 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://6o6a3eovkhg2" path="res://scenes/ui/buy_menu/buy_button.tscn" id="3_nwdi4"]
 [ext_resource type="Resource" uid="uid://ijh2n2vdv4nn" path="res://data/upgrades/reload_time_01.tres" id="4_upcjb"]
 
-[node name="BuyMenu" type="Control" unique_id=1212878229 node_paths=PackedStringArray("upgrade_buttons")]
+[node name="BuyMenu" type="Control" unique_id=1212878229]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_pvw85")
-upgrade_buttons = [NodePath("BuyButton")]
 _id = &"buy_menu"
 metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
 

@@ -7,6 +7,7 @@ class_name BuyButton extends Control
 @onready var resource_1:Label = %resource_1
 @onready var count:Label = %count
 
+var is_disabled := false
 
 func _ready() -> void:
 	assert(upgrade_data != null, name + " does not contain an upgrade group!")

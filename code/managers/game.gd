@@ -9,7 +9,7 @@ enum State {MENUS, PLAYING, BUYING}
 
 
 var player:PlayerCharacter
-var player_data:PlayerData
+var save_data: SaveData
 var _state:State = State.MENUS
 var _round_number := 0:
 	set(value):
@@ -63,9 +63,9 @@ func _player_ready(_player:PlayerCharacter) -> void:
 
 
 func _create_debug_data() -> void:
-	player_data = PlayerData.new()
+	save_data = SaveData.new()
 
 
 func _update_resource_1(value:int) -> void:
-	player_data.currency_1 += value
-	Signals.resource_1_updated.emit(player_data.currency_1)
+	save_data.currency_1 += value
+	Signals.resource_1_updated.emit(save_data.currency_1)
