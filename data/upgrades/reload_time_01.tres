@@ -18,6 +18,8 @@ metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
 [resource]
 script = ExtResource("2_ktvs4")
 id = &"reload_time_01"
+display_name = "reload time"
+description = "Reduce time to reload."
 type = 2
 group = Array[ExtResource("1_u1cuy")]([SubResource("Resource_6bsfc"), SubResource("Resource_u1cuy")])
 metadata/_custom_type_script = "uid://bp5gir3raop0v"

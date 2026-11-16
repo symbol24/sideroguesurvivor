@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://6o6a3eovkhg2"]
+
+[ext_resource type="Script" uid="uid://cyqju81vp70p6" path="res://code/ui/buy_menu/buy_button.gd" id="1_c1j72"]
+[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="1_uy81s"]
+[ext_resource type="Texture2D" uid="uid://b4omc52my6nst" path="res://textures/debug/8x8_timer_inner.png" id="2_xjwjg"]
+
+[node name="BuyButton" type="Control" unique_id=437087590]
+custom_minimum_size = Vector2(32, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -544.0
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c1j72")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1521968828]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_constants/separation = 0
+
+[node name="icon" type="TextureRect" parent="VBoxContainer" unique_id=1520740885]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_xjwjg")
+expand_mode = 4
+
+[node name="resource_1" type="HBoxContainer" parent="VBoxContainer" unique_id=354696402]
+custom_minimum_size = Vector2(24, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="coin" type="Control" parent="VBoxContainer/resource_1" unique_id=1885297509]
+custom_minimum_size = Vector2(6, 8)
+layout_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer/resource_1/coin" unique_id=771901238]
+position = Vector2(-2, -1)
+scale = Vector2(0.6, 0.6)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 15, 0, 0, 0)
+tile_set = ExtResource("1_uy81s")
+
+[node name="resource_1" type="Label" parent="VBoxContainer/resource_1" unique_id=36600190]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 5
+text = "0"
+
+[node name="count" type="Label" parent="VBoxContainer/resource_1" unique_id=327253151]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 6
+text = "X/X"
+horizontal_alignment = 2
+clip_text = true
+text_overrun_behavior = 2

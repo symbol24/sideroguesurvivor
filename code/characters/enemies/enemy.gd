@@ -61,3 +61,7 @@ func _remove_no_effect() -> void:
 func _move(current_velocity:Vector2, delta:float) -> Vector2:
 	var x := clampf(current_velocity.x + (MOVE_SPEED * delta * _direction), -move_speed, move_speed)
 	return Vector2(x, current_velocity.y)
+
+
+func _round_end_cleanup() -> void:
+	_remove_no_effect()

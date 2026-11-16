@@ -30,7 +30,7 @@ window/size/viewport_height=324
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 window/stretch/scale_mode="integer"
 
 [file_customization]
@@ -46,6 +46,10 @@ folder_colors={
 
 spawn_point="A spawn_point"
 player="The player character"
+
+[gui]
+
+theme/custom="uid://dpdgct5s8vlk0"
 
 [input]
 

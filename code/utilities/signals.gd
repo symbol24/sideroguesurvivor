@@ -13,6 +13,7 @@ signal toggle_display(id:StringName, display:bool)
 signal resource_1_updated(value:int)
 
 # PLAYER
+signal player_ready(player:PlayerCharacter)
 signal start_reload_timer(time:float)
 signal reload_timer_complete
 signal shots_fired(remaining:int)
@@ -23,3 +24,11 @@ signal spawn_a_gribly(type:Griblies.Type, pos:Vector2, value:int)
 signal toggle_active(value:bool)
 signal start_round()
 signal round_timer_updated(value:int)
+signal round_number_updated(value:int)
+
+# UPGRADES
+signal new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type)
+signal attempt_purchase(id:StringName, upgrade:Upgrade)
+
+# SAVE / LOAD
+signal create_debug_data

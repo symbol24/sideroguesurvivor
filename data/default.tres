@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://dpdgct5s8vlk0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxc1e"]
+bg_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[resource]
+BuyMenuBack/base_type = &"Panel"
+BuyMenuBack/styles/panel = SubResource("StyleBoxFlat_gxc1e")

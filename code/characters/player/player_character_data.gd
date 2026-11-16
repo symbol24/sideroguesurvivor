@@ -10,7 +10,7 @@ class_name PlayerCharacterData extends CharacterData
 @export_category(&"Run Data")
 @export var currency1 := 0
 @export var currency2 := 0
-@export var unlocked_upgrades:Dictionary[StringName, Dictionary]
+@export var unlocked_upgrades:Dictionary[StringName, Upgrade]
 
 var invul_time := 0.0
 var weapon_delay := 1.0
@@ -26,3 +26,14 @@ func setup_data() -> void:
 	weapon_delay = _starting_weapon_delay
 	weapon_reload_delay = _debug_weapon_reload_delay
 	bullet_count = _debug_bullet_count
+
+
+func add_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type) -> void:
+	assert(new_upgrade != null, "Upgrade received by player character data is null")
+	if unlocked_upgrades.has(new_upgrade.id): return
+	unlocked_upgrades[new_upgrade.id] = new_upgrade
+	match type:
+		UpgradeGroup.Type.RELOAD_SPEED:
+			weapon_reload_delay += new_upgrade.value
+		_:
+			pass

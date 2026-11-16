@@ -1,16 +1,68 @@
 [gd_scene format=3 uid="uid://52nnvny06moc"]
 
 [ext_resource type="Script" uid="uid://jymoeo0at8ol" path="res://code/ui/buy_menu.gd" id="1_pvw85"]
+[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="2_v4ntl"]
+[ext_resource type="PackedScene" uid="uid://6o6a3eovkhg2" path="res://scenes/ui/buy_menu/buy_button.tscn" id="3_nwdi4"]
+[ext_resource type="Resource" uid="uid://ijh2n2vdv4nn" path="res://data/upgrades/reload_time_01.tres" id="4_upcjb"]
 
-[node name="BuyMenu" type="Control" unique_id=1212878229]
+[node name="BuyMenu" type="Control" unique_id=1212878229 node_paths=PackedStringArray("upgrade_buttons")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_pvw85")
+upgrade_buttons = [NodePath("BuyButton")]
 _id = &"buy_menu"
 metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
 
+[node name="Panel" type="Panel" parent="." unique_id=413211740]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 588.0
+offset_bottom = 334.0
+theme_type_variation = &"BuyMenuBack"
+
 [node name="Label" type="Label" parent="." unique_id=309084659]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 85.0
 offset_bottom = 23.0
 text = "BUY MENU"
+
+[node name="btn_new_round" type="Button" parent="." unique_id=1702519887]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 450.0
+offset_top = 279.0
+offset_right = 562.0
+offset_bottom = 310.0
+text = "NEXT ROUND"
+
+[node name="resource_1" type="HBoxContainer" parent="." unique_id=1389460454]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 66.0
+offset_bottom = 44.0
+theme_override_constants/separation = 0
+
+[node name="coin" type="Control" parent="resource_1" unique_id=1997434874]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="resource_1/coin" unique_id=301944103]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 15, 0, 0, 0)
+tile_set = ExtResource("2_v4ntl")
+
+[node name="resource_1" type="Label" parent="resource_1" unique_id=1870106850]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="BuyButton" parent="." unique_id=437087590 instance=ExtResource("3_nwdi4")]
+layout_mode = 1
+offset_left = 139.0
+offset_top = 135.0
+offset_right = 239.0
+offset_bottom = 175.0
+upgrade_data = ExtResource("4_upcjb")

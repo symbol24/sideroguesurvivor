@@ -62,3 +62,7 @@ func _death() -> void:
 
 func _remove_no_effect() -> void:
 	queue_free()
+
+
+func _round_end_cleanup() -> void:
+	pass

@@ -8,6 +8,7 @@ var _timer_active := false
 @onready var reload_delay_bar:ProgressBar = %reload_delay_bar
 @onready var resource_1:Label = %resource_1
 @onready var timer_label:Label = %timer_label
+@onready var round_number:Label = %round_number
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	Signals.shots_fired.connect(_shots_fired)
 	Signals.resource_1_updated.connect(_update_resource_1)
 	Signals.round_timer_updated.connect(_update_timer_label)
+	Signals.round_number_updated.connect(_update_round_number)
 
 
 func _process(delta: float) -> void:
@@ -38,7 +40,6 @@ func _start_reload_timer(timer:float = 1.0) -> void:
 
 func _shots_fired(remaining:int) -> void:
 	for i in bullet_icons.size():
-		print("remaining: ", remaining, " i: ", i+1)
 		bullet_icons[i].toggle(true if i+1 <= remaining else false)
 		
 
@@ -53,3 +54,8 @@ func _update_resource_1(value:int) -> void:
 
 func _update_timer_label(value:int) -> void:
 	timer_label.text = str(value)
+
+
+func _update_round_number(value:int) -> void:
+	if round_number == null: return
+	round_number.text = str(value)

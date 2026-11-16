@@ -16,5 +16,6 @@ func _ready() -> void:
 	var ui = load(UI_UID).instantiate()
 	get_tree().root.add_child.call_deferred(ui)
 	if not ui.is_node_ready(): await ui.ready
+	Signals.create_debug_data.emit()
 	var target = load(TARGET)
 	get_tree().change_scene_to_packed(target)

@@ -52,7 +52,7 @@ func _ready() -> void:
 	super()
 	add_to_group(&"player")
 	Signals.reload_timer_complete.connect(_reload_time_complete)
-	Signals.update_resource_1.connect(_update_resource_1)
+	Signals.new_upgrade.connect(_new_upgrade)
 
 
 func _process(delta: float) -> void:
@@ -121,3 +121,15 @@ func _get_target() -> Enemy:
 func _update_resource_1(value:int) -> void:
 	_data.currency1 += value
 	Signals.resource_1_updated.emit(_data.currency1)
+
+
+func _round_end_cleanup() -> void:
+	_left_pressed = false
+	_right_pressed = false
+	_input_timer = 0.0
+	_check_timer = 0.0
+	_attack_timer = 0.0
+
+
+func _new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type) -> void:
+	_data.add_upgrade(new_upgrade, type)
