@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="2_v4ntl"]
 [ext_resource type="PackedScene" uid="uid://6o6a3eovkhg2" path="res://scenes/ui/buy_menu/buy_button.tscn" id="3_nwdi4"]
 [ext_resource type="Resource" uid="uid://ijh2n2vdv4nn" path="res://data/upgrades/reload_time_01.tres" id="4_upcjb"]
+[ext_resource type="PackedScene" uid="uid://bt7ydmw0f321w" path="res://scenes/ui/buy_menu/upgrade_popup.tscn" id="5_7uo2s"]
 
 [node name="BuyMenu" type="Control" unique_id=1212878229]
 layout_mode = 3
@@ -65,3 +66,7 @@ offset_top = 135.0
 offset_right = 239.0
 offset_bottom = 175.0
 upgrade_data = ExtResource("4_upcjb")
+
+[node name="upgrade_popup" parent="." unique_id=429861218 instance=ExtResource("5_7uo2s")]
+unique_name_in_owner = true
+layout_mode = 0
