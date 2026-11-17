@@ -10,7 +10,7 @@ size = Vector2(16, 52)
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3syn"]
 radius = 8.0
 
-[node name="DebugEnemy" type="CharacterBody2D" unique_id=1075121529]
+[node name="DebugEnemy" type="CharacterBody2D" unique_id=1075121529 groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_3trxa")
 metadata/_custom_type_script = "uid://cjwwguavxolys"

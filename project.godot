@@ -46,6 +46,7 @@ folder_colors={
 
 spawn_point="A spawn_point"
 player="The player character"
+enemy=""
 
 [gui]
 

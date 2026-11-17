@@ -45,3 +45,13 @@ func _remove_enemy(enemy: Enemy) -> void:
 
 func _toggle_active(value:bool  = false) -> void:
 	_is_active = value
+	# If the round is ending/pausing, clear out all active enemies immediately
+	if not _is_active: _clear_all_enemies()
+
+
+func _clear_all_enemies() -> void:
+	# Iterate over a duplicate or copy of the array to safely queue_free and clear
+	for enemy in _enemies:
+		if is_instance_valid(enemy):
+			enemy.queue_free()
+	_enemies.clear()
