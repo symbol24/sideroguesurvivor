@@ -26,7 +26,7 @@ var current_cost: Array[CurrencyCost]:
 	get:
 		if is_maxed:
 			return []
-		return group[current_id].costs
+		return group[current_id].cost
 var last_purchased_upgrade: Upgrade:
 	get:
 		if current_id <= 0:
