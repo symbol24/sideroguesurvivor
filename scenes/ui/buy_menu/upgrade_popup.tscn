@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bt7ydmw0f321w"]
+
+[ext_resource type="Script" uid="uid://6q85mlaui8qh" path="res://code/ui/buy_menu/upgrade_popup.gd" id="1_okyfv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0vek"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="UpgradePopup" type="PanelContainer" unique_id=429861218]
+custom_minimum_size = Vector2(100, 50)
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0vek")
+script = ExtResource("1_okyfv")
+
+[node name="vbox" type="VBoxContainer" parent="." unique_id=2111946889]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="name" type="Label" parent="vbox" unique_id=1261351520]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "name goes here"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="description" type="Label" parent="vbox" unique_id=2132568987]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 5
+text = "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 2
