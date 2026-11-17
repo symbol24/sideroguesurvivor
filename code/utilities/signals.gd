@@ -11,6 +11,8 @@ signal closest_to_shoot(enemy:Enemy)
 # UI
 signal toggle_display(id:StringName, display:bool)
 signal resource_1_updated(value:int)
+signal show_upgrade_tooltip(upgrade_data:UpgradeGroup, position:Vector2, btn_size:Vector2)
+signal hide_upgrade_tooltip
 
 # PLAYER
 signal player_ready(player:PlayerCharacter)
