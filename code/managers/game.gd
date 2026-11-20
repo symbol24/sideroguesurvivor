@@ -17,9 +17,10 @@ var _round_number := 0:
 		Signals.round_number_updated.emit(_round_number)
 var _round_timer := 10:
 	set(value):
-		_round_timer = value
+		if _round_timer == value: return
+		_round_timer = maxi(value, 0)
 		Signals.round_timer_updated.emit(_round_timer)
-		if _round_timer <= 0: _end_round()
+		if _round_timer <= 0 and _state == State.PLAYING: _end_round()
 var _timer := 1.0:
 	set(value):
 		_timer = value
@@ -36,10 +37,11 @@ func _ready() -> void:
 	Signals.player_ready.connect(_player_ready)
 	Signals.create_debug_data.connect(_create_debug_data)
 	Signals.update_resource_1.connect(_update_resource_1)
+	Signals.load_complete.connect(_load_complete)
 
 
 func _process(delta: float) -> void:
-	if _state == State.PLAYING: _timer -= delta
+	if _state == State.PLAYING and _round_timer > 0: _timer -= delta
 
 
 func _start_round() -> void:
@@ -67,5 +69,12 @@ func _create_debug_data() -> void:
 
 
 func _update_resource_1(value:int) -> void:
+	assert(save_data != null, "Save Data is null in Game Manager.")
 	save_data.currency_1 += value
+	Signals.resource_1_updated.emit(save_data.currency_1)
+
+
+func _load_complete(data:SaveData) -> void:
+	assert(data != null, "Data received is null in Game Manager.")
+	save_data = data
 	Signals.resource_1_updated.emit(save_data.currency_1)
