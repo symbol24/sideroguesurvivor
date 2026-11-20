@@ -12,6 +12,7 @@ var _is_active := false
 
 func _ready() -> void:
 	name = &"SpawnManager"
+	add_to_group(&"SpawnManager")
 	Signals.spawn_one.connect(_spawn)
 	Signals.remove_one.connect(_remove_enemy)
 	Signals.toggle_active.connect(_toggle_active)
@@ -40,7 +41,7 @@ func _spawn_character(_character_player_data:PlayerCharacterData, _position:Vect
 
 func _remove_enemy(enemy: Enemy) -> void:
 	var i := _enemies.find(enemy)
-	_enemies.pop_at(i)
+	if i != -1: _enemies.pop_at(i)
 
 
 func _toggle_active(value:bool  = false) -> void:
@@ -50,8 +51,36 @@ func _toggle_active(value:bool  = false) -> void:
 
 
 func _clear_all_enemies() -> void:
-	# Iterate over a duplicate or copy of the array to safely queue_free and clear
-	for enemy in _enemies:
+	for enemy in _enemies.duplicate():
 		if is_instance_valid(enemy):
 			enemy.queue_free()
 	_enemies.clear()
+
+
+func get_targets_in_line(player_pos: Vector2, facing_left: bool, max_range: float = INF, max_targets: int = 1) -> Array[Enemy]:
+	var candidates: Array[Enemy] = []
+
+	for enemy in _enemies:
+		if enemy == null or not is_instance_valid(enemy) or not enemy._is_active:
+			continue
+
+		var dx := enemy.global_position.x - player_pos.x
+		if facing_left and dx > 0.0:
+			continue
+		if not facing_left and dx < 0.0:
+			continue
+
+		var dist := absf(dx)
+		if dist > max_range:
+			continue
+
+		candidates.append(enemy)
+
+	candidates.sort_custom(func(a: Enemy, b: Enemy) -> bool:
+		return absf(a.global_position.x - player_pos.x) < absf(b.global_position.x - player_pos.x)
+	)
+
+	if max_targets > 0 and candidates.size() > max_targets:
+		candidates.resize(max_targets)
+
+	return candidates

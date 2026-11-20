@@ -11,5 +11,4 @@ func get_cost(currency_type: Game.Currency) -> int:
 	for each in cost:
 		if each.currency == currency_type:
 			return each.amount
-	
 	return 0

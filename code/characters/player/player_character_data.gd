@@ -6,12 +6,14 @@ class_name PlayerCharacterData extends CharacterData
 @export var _debug_bullet_count := 1
 @export var _debug_weapon_reload_delay := 2.0
 @export var _starting_damage := 1
+@export var _starting_penetration := 1
 
 var invulnerable_time := 0.0
 var weapon_delay := 1.0
 var weapon_reload_delay := 2.0
 var bullet_count := 1
 var damage := 1
+var penetration := 1
 
 
 func setup_data() -> void:
@@ -22,6 +24,7 @@ func setup_data() -> void:
 	weapon_reload_delay = _debug_weapon_reload_delay
 	bullet_count = _debug_bullet_count
 	damage = _starting_damage
+	penetration = _starting_penetration
 
 
 func recalculate_upgrades(upgrade_groups: Array[UpgradeGroup]) -> void:
@@ -54,6 +57,8 @@ func _apply_upgrade(upgrade: Upgrade, type: UpgradeGroup.Type, calc: UpgradeGrou
 			pass
 		UpgradeGroup.Type.SPECIAL_RELOAD:
 			pass
+		UpgradeGroup.Type.PENETRATION:
+			penetration = max(1, int(round(_calculate(float(penetration), val, calc))))
 
 
 func _calculate(current: float, mod: float, calc: UpgradeGroup.Calculation) -> float:

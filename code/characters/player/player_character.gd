@@ -5,8 +5,11 @@ const INPUT_DELAY := 0.2
 const DEBUG_WEAPON_DELAY := 1.0
 
 @export var debug_data: PlayerCharacterData
-@export var attack_detector: RayCast2D
 
+var _spawn_manager:Spawn:
+	get:
+		if _spawn_manager == null: _spawn_manager = get_tree().get_first_node_in_group(&"SpawnManager") as Spawn
+		return _spawn_manager
 var _input_timer := 0.0:
 	set(value):
 		_input_timer = value
@@ -76,10 +79,11 @@ func _trigger_direction() -> void:
 	elif _right_pressed:
 		_flip(false)
 	if _can_shoot and _current_bullet_count > 0:
-		var enemy: Enemy = _get_target()
-		if enemy != null:
+		var enemy: Array[Enemy] = _get_target()
+		if not enemy.is_empty():
 			var dmg: int = int((_data as PlayerCharacterData).damage) if _data is PlayerCharacterData else 1
-			enemy.apply_damage(-dmg)
+			for each in enemy:
+				each.apply_damage(-dmg)
 		_can_shoot = false
 		_attack_timer = _data.weapon_delay if _data != null else DEBUG_WEAPON_DELAY
 		_current_bullet_count -= 1
@@ -110,9 +114,16 @@ func _reset_inputs() -> void:
 	_right_pressed = false
 
 
-func _get_target() -> Enemy:
-	attack_detector.force_raycast_update()
-	return attack_detector.get_collider() as Enemy
+func _get_target() -> Array[Enemy]:
+	if _spawn_manager != null:
+		var targets: Array[Enemy] = _spawn_manager.get_targets_in_line(
+				global_position,
+				_is_facing_left,
+				INF,
+				_get_penetration()
+		)
+		return targets
+	return []
 
 
 func _round_end_cleanup() -> void:
@@ -129,3 +140,7 @@ func _on_upgrade_purchased(group: UpgradeGroup) -> void:
 		p_data.apply_upgrade_group(group)
 		_max_bullet_amount = p_data.bullet_count
 		_current_bullet_count = _max_bullet_amount
+
+
+func _get_penetration() -> int:
+	return max(1, _data.penetration)
