@@ -24,4 +24,6 @@ func _ready() -> void:
 	else:
 		Signals.request_load.emit(data.last_save_id)
 	var target = load(TARGET)
+	Signals.request_save.emit()
+	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_packed(target)

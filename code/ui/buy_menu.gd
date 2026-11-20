@@ -41,6 +41,7 @@ func toggle_display(display := false) -> void:
 
 
 func _start_next_round() -> void:
+	Signals.request_save.emit()
 	Signals.toggle_display.emit(&"buy_menu", false)
 	Signals.toggle_display.emit(&"play_ui", true)
 	Signals.start_round.emit()
