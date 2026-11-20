@@ -18,6 +18,8 @@ func _ready() -> void:
 	name = &"DataManager"
 	all_save_data = _get_all_saves()
 	Signals.request_load.connect(load_file)
+	Signals.request_save.connect(save)
+	Signals.upgrade_purchased.connect(_on_upgrade_purchased)
 
 
 func save(save_data: SaveData = null) -> void:
@@ -85,3 +87,8 @@ func _get_last_saved_save() -> SaveData:
 		if last == null or each.last_save_time > last.last_save_time:
 			last = each
 	return last
+
+
+func _on_upgrade_purchased(group: UpgradeGroup) -> void:
+	if loaded_save_file != null:
+		loaded_save_file.unlock_upgrade(group)
