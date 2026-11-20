@@ -1,6 +1,5 @@
 class_name BuyMenu extends RidControl
 
-const RELOAD01: UpgradeGroup = preload("uid://ijh2n2vdv4nn")
 
 @export var upgrade_buttons: Array[BuyButton]
 
@@ -19,11 +18,7 @@ var _popup_tween: Tween
 func _ready() -> void:
 	super()
 	btn_new_round.pressed.connect(_start_next_round)
-
-	# Listen for currency updates to keep the shop header fresh in real-time
 	Signals.resource_1_updated.connect(_on_resource_1_updated)
-
-	# Listen for tooltip signals from the buy buttons
 	Signals.show_upgrade_tooltip.connect(_on_show_upgrade_tooltip)
 	Signals.hide_upgrade_tooltip.connect(_on_hide_upgrade_tooltip)
 
@@ -80,10 +75,9 @@ func _on_show_upgrade_tooltip(upgrade_group: UpgradeGroup, button_pos: Vector2, 
 
 	# Screen Clamping Logic
 	if target_pos.x + popup_size.x > viewport_size.x:
-		target_pos.x = button_pos.x - popup_size.x - 10
-
+		target_pos.x = maxf(button_pos.x - popup_size.x - 10.0, 10.0)
 	if target_pos.y + popup_size.y > viewport_size.y:
-		target_pos.y = viewport_size.y - popup_size.y - 10
+		target_pos.y = maxf(viewport_size.y - popup_size.y - 10.0, 10.0)
 
 	upgrade_popup.global_position = target_pos
 
