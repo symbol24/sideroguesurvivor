@@ -120,7 +120,7 @@ func _get_target() -> Array[Enemy]:
 				global_position,
 				_is_facing_left,
 				INF,
-				_get_penetration()
+				_data.penetration
 		)
 		return targets
 	return []
@@ -140,7 +140,3 @@ func _on_upgrade_purchased(group: UpgradeGroup) -> void:
 		p_data.apply_upgrade_group(group)
 		_max_bullet_amount = p_data.bullet_count
 		_current_bullet_count = _max_bullet_amount
-
-
-func _get_penetration() -> int:
-	return max(1, _data.penetration)
