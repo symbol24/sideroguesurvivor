@@ -30,7 +30,6 @@ func setup_character(new_data:CharacterData) -> void:
 	name = _data.id
 	_flip(Game.PLAYER_POS.x <= global_position.x)
 	_direction = -1.0 if _is_facing_left else 1.0
-	if debug_data != null: setup_character(debug_data)
 
 
 func damage_death() -> void:
