@@ -6,6 +6,11 @@ const DEBUG_WEAPON_DELAY := 1.0
 
 @export var debug_data: PlayerCharacterData
 
+var data:PlayerCharacterData:
+	get:
+		return _data
+	set(value):
+		pass
 var _spawn_manager:Spawn:
 	get:
 		if _spawn_manager == null: _spawn_manager = get_tree().get_first_node_in_group(&"SpawnManager") as Spawn

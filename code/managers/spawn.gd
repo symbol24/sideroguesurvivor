@@ -37,6 +37,7 @@ func _spawn_character(_character_player_data:PlayerCharacterData, _position:Vect
 	if not _active_character.is_node_ready(): await _active_character.ready
 	_active_character.setup_character(_character_player_data)
 	_active_character.global_position = _position
+	Signals.player_ready.emit(_active_character)
 
 
 func _remove_enemy(enemy: Enemy) -> void:

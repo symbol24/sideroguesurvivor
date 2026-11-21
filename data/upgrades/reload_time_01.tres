@@ -31,6 +31,7 @@ metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
 [resource]
 script = ExtResource("2_ktvs4")
 id = &"reload_time_01"
+icon_uid = "uid://bd3ld7efa2uie"
 display_name = "reload time"
 description = "Reduce time to reload."
 type = 2

@@ -20,6 +20,7 @@ var _debug_timer := 0.0:
 
 func _ready() -> void:
 	Signals.toggle_active.connect(_toggle_active)
+	Signals.player_ready.connect(_player_ready)
 	var sm:Spawn = Spawn.new()
 	add_child(sm)
 	if not sm.is_node_ready(): await sm.ready
@@ -27,8 +28,6 @@ func _ready() -> void:
 	add_child(griblies)
 	if not griblies.is_node_ready(): await griblies.ready
 	Signals.spawn_character.emit(DEBUG_PLAYER, Game.PLAYER_POS)
-	Signals.toggle_display.emit(&"play_ui", true)
-	Signals.start_round.emit()
 	
 	
 func _process(delta: float) -> void:
@@ -38,4 +37,9 @@ func _process(delta: float) -> void:
 func _toggle_active(value:bool) -> void:
 	_debug_timer = 0.0
 	_active = value
+
+
+func _player_ready(player:PlayerCharacter) -> void:
+	Signals.toggle_display.emit(&"play_ui", true)
+	Signals.start_round.emit()
 	

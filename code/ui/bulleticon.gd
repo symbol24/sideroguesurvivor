@@ -5,6 +5,5 @@ class_name BulletIcon extends Control
 
 
 func toggle(value := true) -> void:
-	print("toggling bullet: ", value)
 	if value: inner.show()
 	else: inner.hide()

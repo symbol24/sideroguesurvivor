@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="UpgradeGroup" format=3 uid="uid://b75d10ypmgoyi"]
+
+[ext_resource type="Script" uid="uid://bc0wrsrgqn77l" path="res://code/upgrades/upgrade.gd" id="1_u1cuy"]
+[ext_resource type="Script" uid="uid://bp5gir3raop0v" path="res://code/upgrades/upgrade_group.gd" id="2_ktvs4"]
+[ext_resource type="Script" uid="uid://b2dqpe6lnr0o4" path="res://code/utilities/currency_cost.gd" id="2_yeuu8"]
+
+[sub_resource type="Resource" id="Resource_cost1"]
+script = ExtResource("2_yeuu8")
+amount = 2
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_bul1"]
+script = ExtResource("1_u1cuy")
+id = &"bullet_count_01_01"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost1")])
+value = 1
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost2"]
+script = ExtResource("2_yeuu8")
+amount = 3
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_bul2"]
+script = ExtResource("1_u1cuy")
+id = &"bullet_count_01_02"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost2")])
+value = 1
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost3"]
+script = ExtResource("2_yeuu8")
+amount = 5
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_bul3"]
+script = ExtResource("1_u1cuy")
+id = &"bullet_count_01_03"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost3")])
+value = 2
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost4"]
+script = ExtResource("2_yeuu8")
+amount = 8
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_bul4"]
+script = ExtResource("1_u1cuy")
+id = &"bullet_count_01_04"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost4")])
+value = 2
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost5"]
+script = ExtResource("2_yeuu8")
+amount = 12
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_bul5"]
+script = ExtResource("1_u1cuy")
+id = &"bullet_count_01_05"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost5")])
+value = 3
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[resource]
+script = ExtResource("2_ktvs4")
+id = &"bullet_count_01"
+icon_uid = "uid://ba58b5fo4hqty"
+display_name = "Bullet Count"
+description = "Fire more bullets before reloading."
+type = 1
+group = Array[ExtResource("1_u1cuy")]([SubResource("Resource_bul1"), SubResource("Resource_bul2"), SubResource("Resource_bul3"), SubResource("Resource_bul4"), SubResource("Resource_bul5")])
+requirements = Dictionary[StringName, bool]({
+&"damage_01": false,
+&"penetration_01": false
+})
+metadata/_custom_type_script = "uid://bp5gir3raop0v"

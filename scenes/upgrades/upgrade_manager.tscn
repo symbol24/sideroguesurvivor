@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://dctky2uwt35mv" path="res://code/upgrades/upgrade_manager.gd" id="1_6bsfc"]
 [ext_resource type="Script" uid="uid://bp5gir3raop0v" path="res://code/upgrades/upgrade_group.gd" id="2_6ylsl"]
 [ext_resource type="Resource" uid="uid://ijh2n2vdv4nn" path="res://data/upgrades/reload_time_01.tres" id="3_xao5k"]
+[ext_resource type="Resource" uid="uid://c7w2k5nx9pqr4" path="res://data/upgrades/damage_01.tres" id="4_dmg01"]
+[ext_resource type="Resource" uid="uid://f3j8m2vx6nkp9" path="res://data/upgrades/bullet_count_01.tres" id="5_bul01"]
+[ext_resource type="Resource" uid="uid://h5t9w3kx2mnp7" path="res://data/upgrades/penetration_01.tres" id="6_pen01"]
 
 [node name="UpgradeManager" type="Node" unique_id=1409438936]
 script = ExtResource("1_6bsfc")
-upgrade_groups = Array[ExtResource("2_6ylsl")]([ExtResource("3_xao5k")])
+upgrade_groups = Array[ExtResource("2_6ylsl")]([ExtResource("4_dmg01"), ExtResource("5_bul01"), ExtResource("3_xao5k"), ExtResource("6_pen01")])
 metadata/_custom_type_script = "uid://dctky2uwt35mv"

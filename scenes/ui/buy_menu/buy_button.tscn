@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://6o6a3eovkhg2"]
 
 [ext_resource type="Script" uid="uid://cyqju81vp70p6" path="res://code/ui/buy_menu/buy_button.gd" id="1_c1j72"]
-[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="1_uy81s"]
 [ext_resource type="Texture2D" uid="uid://b4omc52my6nst" path="res://textures/debug/8x8_timer_inner.png" id="2_xjwjg"]
+[ext_resource type="Texture2D" uid="uid://rrgd6oekc38x" path="res://textures/debug/buy_btn_background.png" id="2_xpi4s"]
+[ext_resource type="Texture2D" uid="uid://bdn3xvt2m00q" path="res://textures/debug/currency_01.png" id="4_g2mcd"]
+[ext_resource type="Texture2D" uid="uid://81b7pgx3p0m2" path="res://textures/debug/maxed_check_mark.png" id="5_g2mcd"]
+[ext_resource type="Texture2D" uid="uid://cbb556osfh1ec" path="res://textures/debug/currency_02.png" id="5_r4tsb"]
 
 [node name="BuyButton" type="Control" unique_id=437087590]
 custom_minimum_size = Vector2(24, 25)
@@ -16,11 +19,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c1j72")
 
+[node name="background" type="TextureRect" parent="." unique_id=1065267595]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 20.0
+offset_bottom = 16.0
+texture = ExtResource("2_xpi4s")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1521968828]
-custom_minimum_size = Vector2(24, 0)
+custom_minimum_size = Vector2(24, 30)
 layout_mode = 0
 offset_right = 24.0
-offset_bottom = 25.0
+offset_bottom = 33.0
 theme_override_constants/separation = 0
 
 [node name="icon" type="TextureRect" parent="VBoxContainer" unique_id=1520740885]
@@ -32,40 +42,62 @@ size_flags_vertical = 0
 texture = ExtResource("2_xjwjg")
 expand_mode = 4
 
-[node name="resource_1" type="HBoxContainer" parent="VBoxContainer" unique_id=354696402]
-custom_minimum_size = Vector2(24, 8)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-
-[node name="coin" type="Control" parent="VBoxContainer/resource_1" unique_id=1885297509]
-custom_minimum_size = Vector2(6, 8)
-layout_mode = 2
-
-[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer/resource_1/coin" unique_id=771901238]
-position = Vector2(-2, -1)
-scale = Vector2(0.6, 0.6)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 15, 0, 0, 0)
-tile_set = ExtResource("1_uy81s")
-
-[node name="resource_1" type="Label" parent="VBoxContainer/resource_1" unique_id=36600190]
+[node name="resources" type="GridContainer" parent="VBoxContainer" unique_id=1976854488]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="coin_1" type="TextureRect" parent="VBoxContainer/resources" unique_id=1889658417]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 6)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_g2mcd")
+
+[node name="resource_1" type="Label" parent="VBoxContainer/resources" unique_id=36600190]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 5
-text = "0"
+text = "00"
+horizontal_alignment = 1
 
-[node name="count" type="Label" parent="VBoxContainer/resource_1" unique_id=327253151]
+[node name="coin_2" type="TextureRect" parent="VBoxContainer/resources" unique_id=1625034210]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_r4tsb")
+
+[node name="resource_2" type="Label" parent="VBoxContainer/resources" unique_id=1829568756]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 5
+text = "00"
+horizontal_alignment = 1
+
+[node name="count" type="Label" parent="VBoxContainer" unique_id=327253151]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 6)
+layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "X/X"
-horizontal_alignment = 2
-clip_text = true
+horizontal_alignment = 1
 text_overrun_behavior = 2
+
+[node name="maxed_check_mark" type="TextureRect" parent="." unique_id=923390216]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_right = 20.0
+offset_bottom = 16.0
+texture = ExtResource("5_g2mcd")
 
 [node name="mouse_layer" type="Control" parent="." unique_id=1002808557]
 unique_name_in_owner = true

@@ -12,6 +12,8 @@ enum Calculation {ADDITIVE, MULTIPLICATIVE, LOGARITHMIC}
 @export var type: Type
 @export var calculation: Calculation
 @export var group: Array[Upgrade]
+@export var requirements:Dictionary[StringName, bool] = {}
+
 
 var current_id := 0
 var is_maxed: bool:
@@ -30,6 +32,9 @@ var last_purchased_upgrade: Upgrade:
 	get:
 		if current_id <= 0: return null
 		return group[current_id - 1]
+var is_locked := true:
+	get:
+		return check_requirements()
 
 
 func get_current_cost(currency_type: Game.Currency) -> int:
@@ -47,3 +52,26 @@ func sync_current_id(unlocked: Dictionary[StringName, int]) -> void:
 	if not unlocked.has(id): return
 	current_id = 0
 	current_id = clampi(unlocked[id], 0, group.size())
+
+
+func set_requirement(requirement_id:StringName, value:bool) -> void:
+	if requirements.has(requirement_id):
+		requirements[requirement_id] = value
+		check_requirements()
+
+
+func check_requirements() -> bool:
+	if requirements.size() == 0:
+		Signals.unlock_upgrade_group_in_ui.emit(self)
+		return false
+	
+	var tot := 0
+	for key in requirements.keys():
+		if requirements[key]:
+			tot += 1
+
+	if tot == requirements.size():
+		Signals.unlock_upgrade_group_in_ui.emit(self)
+		return false
+
+	return true

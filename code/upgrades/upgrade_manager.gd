@@ -23,6 +23,11 @@ func _on_load_complete(data: SaveData) -> void:
 	for group in upgrade_groups:
 		if group != null:
 			group.sync_current_id(data.unlocked_upgrades)
+	
+	# Restore requirement state from saved upgrades
+	for group in upgrade_groups:
+		if group != null and group.current_id > 0:
+			_upgrade_requirement_updated(group)
 
 
 func _attempt_purchase(group: UpgradeGroup) -> void:
@@ -62,3 +67,9 @@ func _attempt_purchase(group: UpgradeGroup) -> void:
 	# 3. Advance tier & broadcast signal (Game saves unlocked_upgrades on upgrade_purchased)
 	group.advance()
 	Signals.upgrade_purchased.emit(group)
+	_upgrade_requirement_updated(group)
+
+
+func _upgrade_requirement_updated(group:UpgradeGroup) -> void:
+	for each in upgrade_groups:
+		each.set_requirement(group.id, true)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://d4h8n2kx7wqf3"]
+
+[ext_resource type="Script" uid="uid://dt24emjoml5m5" path="res://code/characters/enemies/enemy_data.gd" id="1_s7yqf"]
+
+[resource]
+script = ExtResource("1_s7yqf")
+_starting_hp = 1
+_starting_lives = 1
+_starting_move_speed = 70.0
+_starting_damage = 1
+_starting_resource_1_value = 2
+id = &"fast_enemy"
+scene = "uid://bykporhen0naj"
+metadata/_custom_type_script = "uid://dt24emjoml5m5"

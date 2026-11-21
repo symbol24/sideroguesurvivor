@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://cesc78rlcx0sl"]
 
 [ext_resource type="Script" uid="uid://cpf1i70jir12n" path="res://code/ui/play_ui.gd" id="1_4btmp"]
-[ext_resource type="PackedScene" uid="uid://c2nsju14umt1m" path="res://scenes/ui/bulleticon.tscn" id="2_bf28e"]
-[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="3_gqbwl"]
+[ext_resource type="Texture2D" uid="uid://bdn3xvt2m00q" path="res://textures/debug/currency_01.png" id="3_gqbwl"]
+[ext_resource type="Texture2D" uid="uid://cbb556osfh1ec" path="res://textures/debug/currency_02.png" id="4_e8yxp"]
 
-[node name="PlayUi" type="Control" unique_id=1449471144 node_paths=PackedStringArray("bullet_icons")]
+[node name="PlayUi" type="Control" unique_id=1449471144]
 custom_minimum_size = Vector2(576, 324)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4btmp")
-bullet_icons = [NodePath("bulleticon")]
 _id = &"play_ui"
 metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
 
@@ -26,33 +25,55 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="bulleticon" parent="." unique_id=1245500148 instance=ExtResource("2_bf28e")]
+[node name="currency_vb" type="VBoxContainer" parent="." unique_id=1962906590]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 0
-offset_left = 284.0
-offset_top = 167.0
-offset_right = 292.0
-offset_bottom = 175.0
-
-[node name="resource_1" type="HBoxContainer" parent="." unique_id=1281707704]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 66.0
-offset_bottom = 44.0
+offset_left = 27.0
+offset_top = 24.0
+offset_right = 87.0
+offset_bottom = 64.0
 theme_override_constants/separation = 0
 
-[node name="coin" type="Control" parent="resource_1" unique_id=973298665]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-
-[node name="TileMapLayer" type="TileMapLayer" parent="resource_1/coin" unique_id=268802127]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 15, 0, 0, 0)
-tile_set = ExtResource("3_gqbwl")
-
-[node name="resource_1" type="Label" parent="resource_1" unique_id=338558570]
+[node name="currency_01" type="HBoxContainer" parent="currency_vb" unique_id=1281707704]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 16)
 layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="coin_1" type="TextureRect" parent="currency_vb/currency_01" unique_id=142793571]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gqbwl")
+
+[node name="resource_1" type="Label" parent="currency_vb/currency_01" unique_id=338558570]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="currency_02" type="HBoxContainer" parent="currency_vb" unique_id=1670606778]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="coin_2" type="TextureRect" parent="currency_vb/currency_02" unique_id=1942999902]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_e8yxp")
+
+[node name="resource_2" type="Label" parent="currency_vb/currency_02" unique_id=1871611042]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
 text = "0"
 
@@ -89,3 +110,16 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
+
+[node name="bullets" type="GridContainer" parent="." unique_id=868283992]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 8)
+layout_mode = 0
+offset_left = 265.0
+offset_top = 163.0
+offset_right = 313.0
+offset_bottom = 171.0
+pivot_offset = Vector2(24, 0)
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5

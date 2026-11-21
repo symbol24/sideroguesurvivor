@@ -13,6 +13,7 @@ signal toggle_display(id:StringName, display:bool)
 signal resource_1_updated(value:int)
 signal show_upgrade_tooltip(upgrade_data:UpgradeGroup, position:Vector2, btn_size:Vector2)
 signal hide_upgrade_tooltip
+signal unlock_upgrade_group_in_ui(upgrade_group: UpgradeGroup)
 
 # PLAYER
 signal player_ready(player:PlayerCharacter)
@@ -32,6 +33,7 @@ signal round_number_updated(value:int)
 signal new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type)
 signal attempt_purchase(group: UpgradeGroup)
 signal upgrade_purchased(group:UpgradeGroup)
+signal upgrade_group_updated(upgrade_group: UpgradeGroup)
 
 # SAVE / LOAD
 signal create_debug_data

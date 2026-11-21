@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="UpgradeGroup" format=3 uid="uid://f1jqyqgw7v7o"]
+
+[ext_resource type="Script" uid="uid://bc0wrsrgqn77l" path="res://code/upgrades/upgrade.gd" id="1_u1cuy"]
+[ext_resource type="Script" uid="uid://bp5gir3raop0v" path="res://code/upgrades/upgrade_group.gd" id="2_ktvs4"]
+[ext_resource type="Script" uid="uid://b2dqpe6lnr0o4" path="res://code/utilities/currency_cost.gd" id="2_yeuu8"]
+
+[sub_resource type="Resource" id="Resource_cost1"]
+script = ExtResource("2_yeuu8")
+amount = 3
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_pen1"]
+script = ExtResource("1_u1cuy")
+id = &"penetration_01_01"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost1")])
+value = 1
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost2"]
+script = ExtResource("2_yeuu8")
+amount = 5
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_pen2"]
+script = ExtResource("1_u1cuy")
+id = &"penetration_01_02"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost2")])
+value = 1
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost3"]
+script = ExtResource("2_yeuu8")
+amount = 8
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_pen3"]
+script = ExtResource("1_u1cuy")
+id = &"penetration_01_03"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost3")])
+value = 2
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[sub_resource type="Resource" id="Resource_cost4"]
+script = ExtResource("2_yeuu8")
+amount = 12
+metadata/_custom_type_script = "uid://b2dqpe6lnr0o4"
+
+[sub_resource type="Resource" id="Resource_pen4"]
+script = ExtResource("1_u1cuy")
+id = &"penetration_01_04"
+cost = Array[ExtResource("2_yeuu8")]([SubResource("Resource_cost4")])
+value = 2
+metadata/_custom_type_script = "uid://bc0wrsrgqn77l"
+
+[resource]
+script = ExtResource("2_ktvs4")
+id = &"penetration_01"
+icon_uid = "uid://cetiagvukkp58"
+display_name = "Penetration"
+description = "Bullets pass through more enemies."
+type = 5
+group = Array[ExtResource("1_u1cuy")]([SubResource("Resource_pen1"), SubResource("Resource_pen2"), SubResource("Resource_pen3"), SubResource("Resource_pen4")])
+requirements = Dictionary[StringName, bool]({
+&"reload_time_01": false
+})
+metadata/_custom_type_script = "uid://bp5gir3raop0v"
