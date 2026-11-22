@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://siked3bc717a"]
+
+[ext_resource type="TileSet" uid="uid://df1r0x6d6wkmb" path="res://data/debug_tileset.tres" id="1_b2476"]
+
+[node name="DebugWeapon" type="Node2D" unique_id=1011825462]
+
+[node name="image" type="TileMapLayer" parent="." unique_id=1088587742]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 13, 0, 0, 0, 1, 0, 0, 0, 0, 0, 11, 0, 13, 0, 0, 0)
+tile_set = ExtResource("1_b2476")

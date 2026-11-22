@@ -83,8 +83,9 @@ func _update_round_number(value:int) -> void:
 
 func _update_bullets() -> void:
 	if _game.player != null and _game.player.data != null:
-		if _bullet_icons.size() != _game.player.data.bullet_count:
-			var diff:int = _game.player.data.bullet_count - _bullet_icons.size()
+		var bullet_count := _game.player.data.get_bullet_count()
+		if _bullet_icons.size() != bullet_count:
+			var diff:int = bullet_count - _bullet_icons.size()
 			for i in diff:
 				var icon:BulletIcon = _bullet_scene.instantiate()
 				bullet_icons_grid.add_child(icon)

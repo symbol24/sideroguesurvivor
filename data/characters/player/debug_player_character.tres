@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="PlayerCharacterData" format=3 uid="uid://s6kbt5sqli2s"]
 
 [ext_resource type="Script" uid="uid://drgj586ets6" path="res://code/characters/player/player_character_data.gd" id="1_f1c00"]
+[ext_resource type="Resource" uid="uid://vh602ncvkt3b" path="res://data/weapons/debug_weapon.tres" id="2_w1c00"]
 
 [resource]
 script = ExtResource("1_f1c00")
+weapon = ExtResource("2_w1c00")
 id = &"debug_player_character"
 scene = "uid://c6ige1xg081gc"
 metadata/_custom_type_script = "uid://drgj586ets6"

@@ -1,10 +1,13 @@
 class_name PlayerCharacter extends Character
 
+
 const DELAY_CHECK_TIMER := 0.05
 const INPUT_DELAY := 0.2
 const DEBUG_WEAPON_DELAY := 1.0
 
+
 @export var debug_data: PlayerCharacterData
+@export var gun_point:Marker2D
 
 var data:PlayerCharacterData:
 	get:
@@ -72,9 +75,18 @@ func setup_character(new_data: CharacterData) -> void:
 		var um := get_tree().get_first_node_in_group(&"UpgradeManager") as UpgradeManager
 		if um != null:
 			(_data as PlayerCharacterData).recalculate_upgrades(um.upgrade_groups)
-		_max_bullet_amount = _data.bullet_count
+		_max_bullet_amount = _data.get_bullet_count()
 		_current_bullet_count = _max_bullet_amount
+		_setup_weapon()
 
+
+func _setup_weapon() -> void:
+	assert(data.weapon != null, "Weapon data missing from PlayerCharacterData " + data.id)
+	var new:Node2D = load(data.weapon.uid).instantiate()
+	add_child.call_deferred(new)
+	if not new.is_node_ready(): await new.ready
+	new.position = gun_point.position
+	
 
 func _trigger_direction() -> void:
 	if _left_pressed and _right_pressed: return
@@ -86,11 +98,11 @@ func _trigger_direction() -> void:
 	if _can_shoot and _current_bullet_count > 0:
 		var enemy: Array[Enemy] = _get_target()
 		if not enemy.is_empty():
-			var dmg: int = int((_data as PlayerCharacterData).damage) if _data is PlayerCharacterData else 1
+			var dmg: int = _data.get_weapon_damage() if _data is PlayerCharacterData else 1
 			for each in enemy:
 				each.apply_damage(-dmg)
 		_can_shoot = false
-		_attack_timer = _data.weapon_delay if _data != null else DEBUG_WEAPON_DELAY
+		_attack_timer = _data.get_weapon_delay() if _data is PlayerCharacterData else DEBUG_WEAPON_DELAY
 		_current_bullet_count -= 1
 		Signals.shots_fired.emit(_current_bullet_count)
 	_reset_inputs()
@@ -98,7 +110,7 @@ func _trigger_direction() -> void:
 
 func _trigger_double() -> void:
 	_input_timer = INPUT_DELAY
-	Signals.start_reload_timer.emit(_data.weapon_reload_delay)
+	Signals.start_reload_timer.emit(_data.get_weapon_reload_delay())
 	get_tree().create_timer(DELAY_CHECK_TIMER).timeout.connect(_reset_inputs)
 
 
@@ -121,11 +133,12 @@ func _reset_inputs() -> void:
 
 func _get_target() -> Array[Enemy]:
 	if _spawn_manager != null:
+		var pen: int = _data.get_weapon_penetration() if _data is PlayerCharacterData else 1
 		var targets: Array[Enemy] = _spawn_manager.get_targets_in_line(
 				global_position,
 				_is_facing_left,
 				INF,
-				_data.penetration
+				pen
 		)
 		return targets
 	return []
@@ -143,5 +156,5 @@ func _on_upgrade_purchased(group: UpgradeGroup) -> void:
 	if _data is PlayerCharacterData:
 		var p_data := _data as PlayerCharacterData
 		p_data.apply_upgrade_group(group)
-		_max_bullet_amount = p_data.bullet_count
+		_max_bullet_amount = p_data.get_bullet_count()
 		_current_bullet_count = _max_bullet_amount

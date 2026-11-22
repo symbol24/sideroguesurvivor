@@ -39,7 +39,7 @@ func _toggle_active(value:bool) -> void:
 	_active = value
 
 
-func _player_ready(player:PlayerCharacter) -> void:
+func _player_ready(_player:PlayerCharacter) -> void:
 	Signals.toggle_display.emit(&"play_ui", true)
 	Signals.start_round.emit()
 	

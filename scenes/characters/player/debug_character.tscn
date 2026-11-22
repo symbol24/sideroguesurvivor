@@ -17,10 +17,11 @@ size = Vector2(16, 52)
 radius = 7.0
 height = 48.0
 
-[node name="character" type="CharacterBody2D" unique_id=1141318034 groups=["player"]]
+[node name="character" type="CharacterBody2D" unique_id=1141318034 node_paths=PackedStringArray("gun_point") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_x1s2n")
 debug_data = SubResource("Resource_sqeqr")
+gun_point = NodePath("gun_point")
 
 [node name="image" type="TileMapLayer" parent="." unique_id=1787454930]
 unique_name_in_owner = true
@@ -31,15 +32,6 @@ tile_set = ExtResource("1_m2gs7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=134388491]
 position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_x3syn")
-
-[node name="gun" type="TileMapLayer" parent="." unique_id=581566485]
-unique_name_in_owner = true
-position = Vector2(-8, 0)
-tile_map_data = PackedByteArray("AAAAAP7/AAAKAA0AAAABAP7/AAALAA0AAAA=")
-tile_set = ExtResource("1_m2gs7")
-
-[node name="gun_point" type="Marker2D" parent="gun" unique_id=8448609]
-position = Vector2(16, -27)
 
 [node name="hurt_collider" type="Area2D" parent="." unique_id=407295084]
 position = Vector2(-8, 0)
@@ -52,3 +44,6 @@ unique_name_in_owner = true
 position = Vector2(8, -26)
 shape = SubResource("CapsuleShape2D_x3syn")
 debug_color = Color(0.48333377, 0.5838844, 0.1680978, 0.41960785)
+
+[node name="gun_point" type="Marker2D" parent="." unique_id=663357215]
+position = Vector2(-8, -29)
