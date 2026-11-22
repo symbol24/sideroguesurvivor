@@ -14,6 +14,9 @@ signal resource_1_updated(value:int)
 signal show_upgrade_tooltip(upgrade_data:UpgradeGroup, position:Vector2, btn_size:Vector2)
 signal hide_upgrade_tooltip
 signal unlock_upgrade_group_in_ui(upgrade_group: UpgradeGroup)
+signal wipe_finished
+signal wipe_half_mark
+signal set_next_ui(id:StringName)
 
 # PLAYER
 signal player_ready(player:PlayerCharacter)
@@ -28,6 +31,9 @@ signal toggle_active(value:bool)
 signal start_round()
 signal round_timer_updated(value:int)
 signal round_number_updated(value:int)
+signal round_end_cleanup
+signal world_ready(value:bool)
+signal set_next_state(state:Game.State)
 
 # UPGRADES
 signal new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type)
@@ -41,3 +47,6 @@ signal request_save
 signal request_load(id: int)
 signal save_complete
 signal load_complete(data: SaveData)
+
+# Loader
+signal load_world(id:StringName)

@@ -26,7 +26,7 @@ func _ready() -> void:
 		upgrade_popup.hide()
 
 
-func toggle_display(display := false) -> void:
+func toggle_display(display:bool) -> void:
 	if display:
 		resource_1.text = str(game.save_data.currency_1)
 		_display_upgrades()
@@ -37,9 +37,8 @@ func toggle_display(display := false) -> void:
 
 func _start_next_round() -> void:
 	Signals.request_save.emit()
-	Signals.toggle_display.emit(&"buy_menu", false)
-	Signals.toggle_display.emit(&"play_ui", true)
-	Signals.start_round.emit()
+	Signals.set_next_state.emit(Game.State.PLAYING)
+	Signals.toggle_display.emit(&"wipe_overlay", false)
 
 
 func _display_upgrades() -> void:

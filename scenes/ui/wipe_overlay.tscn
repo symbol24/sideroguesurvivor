@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bt3cc8wrefdv1"]
+
+[ext_resource type="Script" uid="uid://co3fruxlthkc0" path="res://code/ui/wipe_overlay.gd" id="1_cy0vm"]
+[ext_resource type="Script" uid="uid://ba2nlqtgglgje" path="res://code/ui/wipe_transition.gd" id="2_w1c00"]
+
+[node name="WipeOverlay" type="Control" unique_id=1128781524]
+custom_minimum_size = Vector2(576, 324)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cy0vm")
+_id = &"wipe_overlay"
+metadata/_custom_type_script = "uid://qfxrd2hwhkmy"
+
+[node name="WipeTransition" type="ColorRect" parent="." unique_id=477435427]
+custom_minimum_size = Vector2(576, 324)
+layout_mode = 0
+color = Color(0.0492817, 0.062744275, 0.1641477, 1)
+script = ExtResource("2_w1c00")

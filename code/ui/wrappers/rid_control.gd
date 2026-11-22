@@ -13,5 +13,5 @@ func _ready() -> void:
 	name = _id
 
 
-func toggle_display(display := false) -> void:
+func toggle_display(display:bool) -> void:
 	set_visible(display)

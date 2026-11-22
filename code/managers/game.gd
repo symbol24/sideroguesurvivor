@@ -2,6 +2,7 @@ class_name Game extends Node2D
 
 
 const PLAYER_POS := Vector2(288, 241)
+const DEBUG_PLAYER := preload("uid://s6kbt5sqli2s")
 
 
 enum Currency {CURRENCY1, CURRENCY2}
@@ -11,6 +12,7 @@ enum State {MENUS, PLAYING, BUYING}
 var player:PlayerCharacter
 var save_data: SaveData
 var _state:State = State.MENUS
+var _next_state:State = State.MENUS
 var _round_number := 0:
 	set(value):
 		_round_number = value
@@ -27,6 +29,7 @@ var _timer := 1.0:
 		if _timer <= 0.0:
 			_round_timer -= 1
 			_timer = 1.0
+var _world_ready := false
 
 
 func _ready() -> void:
@@ -38,30 +41,68 @@ func _ready() -> void:
 	Signals.create_debug_data.connect(_create_debug_data)
 	Signals.update_resource_1.connect(_update_resource_1)
 	Signals.load_complete.connect(_load_complete)
+	Signals.wipe_finished.connect(_on_wipe_finished)
+	Signals.wipe_half_mark.connect(_on_wipe_half_mark)
+	Signals.set_next_state.connect(_set_next_state)
+	Signals.world_ready.connect(_toggle_world_ready)
 
 
 func _process(delta: float) -> void:
 	if _state == State.PLAYING and _round_timer > 0: _timer -= delta
 
 
+func _set_next_state(new_state:State) -> void:
+	_next_state = new_state
+
+
 func _start_round() -> void:
 	_round_number += 1
 	_round_timer = 10
 	_timer = 1.0
-	_state = State.PLAYING
-	Signals.toggle_active.emit(true)
 	
 
 func _end_round() -> void:
+	# Freeze everything in place (except griblies)
 	Signals.toggle_active.emit(false)
-	_state = State.BUYING
-	Signals.toggle_display.emit(&"buy_menu", true)
-	Signals.toggle_display.emit(&"play_ui", false)
+	_next_state = State.BUYING
+	# Trigger the wipe in transition
+	await get_tree().create_timer(0.3).timeout
+	Signals.toggle_display.emit(&"wipe_overlay", true)
 
+
+func _on_wipe_half_mark() -> void:
+	match _next_state:
+		State.PLAYING:
+			if _world_ready:
+				Signals.spawn_character.emit(DEBUG_PLAYER, Game.PLAYER_POS)
+				Signals.toggle_display.emit(&"buy_menu", false)
+				Signals.toggle_display.emit(&"play_ui", true)
+		State.BUYING:
+			if is_instance_valid(player):
+				player.queue_free()
+				player = null
+				Signals.round_end_cleanup.emit()
+				Signals.toggle_display.emit(&"buy_menu", true)
+		_:
+			pass
+		
+
+func _on_wipe_finished() -> void:
+	_state = _next_state
+	match _state:
+		State.PLAYING:
+			_start_round()
+		State.BUYING:
+			pass
+		_:
+			pass
+			
 
 func _player_ready(_player:PlayerCharacter) -> void:
 	assert(_player != null, "Player received by Game Manager is null.")
 	player = _player
+	Signals.toggle_active.emit(true)
+	Signals.toggle_display.emit(&"play_ui", true)
 
 
 func _create_debug_data() -> void:
@@ -78,3 +119,7 @@ func _load_complete(data:SaveData) -> void:
 	assert(data != null, "Data received is null in Game Manager.")
 	save_data = data
 	Signals.resource_1_updated.emit(save_data.currency_1)
+
+
+func _toggle_world_ready(value:bool) -> void:
+	_world_ready = value

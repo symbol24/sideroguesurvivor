@@ -17,6 +17,7 @@ func _ready() -> void:
 	Signals.remove_one.connect(_remove_enemy)
 	Signals.toggle_active.connect(_toggle_active)
 	Signals.spawn_character.connect(_spawn_character)
+	Signals.round_end_cleanup.connect(_clear_all_enemies)
 
 
 func _spawn(_data:EnemyData, _is_left:bool = true) -> void:
@@ -47,8 +48,6 @@ func _remove_enemy(enemy: Enemy) -> void:
 
 func _toggle_active(value:bool  = false) -> void:
 	_is_active = value
-	# If the round is ending/pausing, clear out all active enemies immediately
-	if not _is_active: _clear_all_enemies()
 
 
 func _clear_all_enemies() -> void:

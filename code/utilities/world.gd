@@ -2,7 +2,6 @@ class_name World extends Node2D
 
 
 const DEBUG_ENEMY := preload("uid://drsdxd6nl0fvt")
-const DEBUG_PLAYER := preload("uid://s6kbt5sqli2s")
 const TIMER := 2.0
 
 
@@ -20,16 +19,16 @@ var _debug_timer := 0.0:
 
 func _ready() -> void:
 	Signals.toggle_active.connect(_toggle_active)
-	Signals.player_ready.connect(_player_ready)
+	Signals.set_next_state.emit(Game.State.PLAYING)
 	var sm:Spawn = Spawn.new()
 	add_child(sm)
 	if not sm.is_node_ready(): await sm.ready
 	var griblies := Griblies.new()
 	add_child(griblies)
 	if not griblies.is_node_ready(): await griblies.ready
-	Signals.spawn_character.emit(DEBUG_PLAYER, Game.PLAYER_POS)
-	
-	
+	Signals.world_ready.emit(true)
+
+
 func _process(delta: float) -> void:
 	if _active: _debug_timer -= delta
 
@@ -39,7 +38,5 @@ func _toggle_active(value:bool) -> void:
 	_active = value
 
 
-func _player_ready(_player:PlayerCharacter) -> void:
-	Signals.toggle_display.emit(&"play_ui", true)
-	Signals.start_round.emit()
-	
+func _exit_tree() -> void:
+	Signals.world_ready.emit(false)

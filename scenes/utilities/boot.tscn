@@ -5,3 +5,26 @@
 [node name="Boot" type="Node2D" unique_id=1702772570]
 script = ExtResource("1_wetwo")
 metadata/_custom_type_script = "uid://cyljbgv6j4cui"
+
+[node name="Control" type="Control" parent="." unique_id=1519952518]
+custom_minimum_size = Vector2(576, 324)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1975171560]
+custom_minimum_size = Vector2(576, 324)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="rid_name" type="Label" parent="Control" unique_id=1692993146]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 196.0
+offset_right = 438.0
+offset_bottom = 241.0
+theme_override_font_sizes/font_size = 32
+text = "Robots in Disguise"

@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 				Signals.reload_timer_complete.emit()
 
 
-func toggle_display(display := false) -> void:
+func toggle_display(display:bool) -> void:
 	set_visible(display)
 	if display:
 		_update_resource_1(_game.save_data.currency_1)
@@ -84,11 +84,13 @@ func _update_round_number(value:int) -> void:
 func _update_bullets() -> void:
 	if _game.player != null and _game.player.data != null:
 		var bullet_count := _game.player.data.get_bullet_count()
-		if _bullet_icons.size() != bullet_count:
-			var diff:int = bullet_count - _bullet_icons.size()
-			for i in diff:
-				var icon:BulletIcon = _bullet_scene.instantiate()
-				bullet_icons_grid.add_child(icon)
-				if not icon.is_node_ready(): await icon.ready
-				_bullet_icons.append(icon)
-				icon.toggle(true)
+		# Clear existing icons and recreate them fresh
+		for icon in _bullet_icons:
+			icon.queue_free()
+		_bullet_icons.clear()
+		for i in bullet_count:
+			var icon:BulletIcon = _bullet_scene.instantiate()
+			bullet_icons_grid.add_child(icon)
+			if not icon.is_node_ready(): await icon.ready
+			_bullet_icons.append(icon)
+			icon.toggle(true)
