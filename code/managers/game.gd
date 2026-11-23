@@ -6,23 +6,26 @@ const DEBUG_PLAYER := preload("uid://s6kbt5sqli2s")
 
 
 enum Currency {CURRENCY1, CURRENCY2}
-enum State {MENUS, PLAYING, BUYING}
+enum State {MENUS, PLAYING, BUYING, DEAD}
+enum Result {NONE, FAILURE, SUCCESS}
 
 
 var player:PlayerCharacter
 var save_data: SaveData
 var _state:State = State.MENUS
 var _next_state:State = State.MENUS
+var _last_round_result := Result.SUCCESS
 var _round_number := 0:
 	set(value):
 		_round_number = value
 		Signals.round_number_updated.emit(_round_number)
 var _round_timer := 10:
 	set(value):
-		if _round_timer == value: return
 		_round_timer = maxi(value, 0)
 		Signals.round_timer_updated.emit(_round_timer)
-		if _round_timer <= 0 and _state == State.PLAYING: _end_round()
+		if _round_timer <= 0 and _state == State.PLAYING:
+			_last_round_result = Result.SUCCESS
+			_end_round()
 var _timer := 1.0:
 	set(value):
 		_timer = value
@@ -45,6 +48,7 @@ func _ready() -> void:
 	Signals.wipe_half_mark.connect(_on_wipe_half_mark)
 	Signals.set_next_state.connect(_set_next_state)
 	Signals.world_ready.connect(_toggle_world_ready)
+	Signals.player_dead.connect(_player_dead)
 
 
 func _process(delta: float) -> void:
@@ -56,8 +60,10 @@ func _set_next_state(new_state:State) -> void:
 
 
 func _start_round() -> void:
-	_round_number += 1
-	_round_timer = 10
+	if _last_round_result == Result.SUCCESS:
+		# only go to next round on success
+		_round_number += 1
+	_round_timer = 15
 	_timer = 1.0
 	
 
@@ -123,3 +129,9 @@ func _load_complete(data:SaveData) -> void:
 
 func _toggle_world_ready(value:bool) -> void:
 	_world_ready = value
+
+
+func _player_dead() -> void:
+	_state = State.DEAD
+	_next_state = State.BUYING
+	_end_round()

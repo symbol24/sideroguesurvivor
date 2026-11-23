@@ -34,6 +34,7 @@ signal round_number_updated(value:int)
 signal round_end_cleanup
 signal world_ready(value:bool)
 signal set_next_state(state:Game.State)
+signal player_dead
 
 # UPGRADES
 signal new_upgrade(new_upgrade:Upgrade, type:UpgradeGroup.Type)

@@ -158,3 +158,7 @@ func _on_upgrade_purchased(group: UpgradeGroup) -> void:
 		p_data.apply_upgrade_group(group)
 		_max_bullet_amount = p_data.get_bullet_count()
 		_current_bullet_count = _max_bullet_amount
+
+
+func _death() -> void:
+	Signals.player_dead.emit()
