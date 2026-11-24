@@ -11,6 +11,14 @@ class_name SaveData extends Resource
 # unlocked upgrades is a dict of upgrade_group id and upgrade id
 @export var unlocked_upgrades:Dictionary[StringName, int] = {}
 
+# SETTINGS
+@export_range(0.0, 1.0, 0.01) var master_volume := 0.6
+var default_master_volume := 0.6
+@export_range(0.0, 1.0, 0.01) var music_volume := 0.6
+var default_music_volume := 0.6
+@export_range(0.0, 1.0, 0.01) var sfx_volume := 0.6
+var default_sfx_volume := 0.6
+
 
 func unlock_upgrade(group:UpgradeGroup) -> void:
 	if group == null: return

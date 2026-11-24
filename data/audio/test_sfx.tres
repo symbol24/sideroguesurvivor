@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AudioData" format=3 uid="uid://dv2vcq2dufqsm"]
+
+[ext_resource type="AudioStream" uid="uid://4ylfolq0xx8v" path="res://audio/sfx/8bit-damage4.wav" id="1_nvbhb"]
+[ext_resource type="Script" uid="uid://dbnothjysch5a" path="res://code/audio/audio_data.gd" id="1_qkrn1"]
+
+[resource]
+script = ExtResource("1_qkrn1")
+file = ExtResource("1_nvbhb")
+channel = 1
+randomize_pitch = true
+metadata/_custom_type_script = "uid://dbnothjysch5a"

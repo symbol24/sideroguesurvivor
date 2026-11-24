@@ -15,7 +15,10 @@ func _ready() -> void:
 	if not data.is_node_ready(): await data.ready
 	var loader := Loader.new()
 	get_tree().root.add_child.call_deferred(loader)
-	if not loader.is_node_ready(): await loader._ready
+	if not loader.is_node_ready(): await loader.ready
+	var audio := AudioManager.new()
+	get_tree().root.add_child.call_deferred(audio)
+	if not audio.is_node_ready(): await audio.ready
 	var upgrades:UpgradeManager = load(UPGRADES).instantiate()
 	get_tree().root.add_child.call_deferred(upgrades)
 	if not upgrades.is_node_ready(): await upgrades.ready

@@ -51,3 +51,6 @@ signal load_complete(data: SaveData)
 
 # Loader
 signal load_world(id:StringName)
+
+# Audio
+signal play_audio(id:StringName)
