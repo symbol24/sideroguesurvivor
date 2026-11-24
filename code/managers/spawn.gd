@@ -23,9 +23,9 @@ func _ready() -> void:
 func _spawn(_data:EnemyData, _is_left:bool = true) -> void:
 	if _is_active:
 		var enemy:Enemy = load(_data.scene).instantiate()
-		_world.add_child(enemy)
-		enemy.global_position = _world.left_spawn.global_position if _is_left else _world.right_spawn.global_position
+		_world.add_child.call_deferred(enemy)
 		if not enemy.is_node_ready(): await enemy.ready
+		enemy.global_position = _world.left_spawn.global_position if _is_left else _world.right_spawn.global_position
 		enemy.setup_character(_data)
 		_enemies.append(enemy)
 		enemy.toggle_active(true)
